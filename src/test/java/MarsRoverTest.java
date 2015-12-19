@@ -10,7 +10,7 @@ public class MarsRoverTest {
 
     @Before
     public void setUp() throws Exception {
-        marsRover = new MarsRover("0 0 N");
+        marsRover = new MarsRover("0 0", "N");
     }
 
     @Test
