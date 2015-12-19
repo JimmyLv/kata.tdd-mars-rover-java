@@ -1,14 +1,14 @@
 public class MarsRover {
 
-    private String orientation;
     private int y;
     private int x;
+    private String orientation;
 
-    public MarsRover(String initialPositionAndOrientation, String orientation) {
-        String[] strings = initialPositionAndOrientation.split(" ");
+    public MarsRover(String initialPosition, String initialOrientation) {
+        String[] strings = initialPosition.split(" ");
         this.x = Integer.parseInt(strings[0]);
         this.y = Integer.parseInt(strings[1]);
-        this.orientation = orientation;
+        this.orientation = initialOrientation;
     }
 
     public void execute(String command) {
