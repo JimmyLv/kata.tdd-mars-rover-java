@@ -26,20 +26,28 @@ public class MarsRover {
             if (command == 'R') {
                 orientation = "E";
             } else if (command == 'L') {
-                int index = ORIENTATIONS.indexOf(orientation);
-                int pre = index - 1;
-                pre = pre < 0 ? ORIENTATIONS.size() + pre : pre;
-                orientation = ORIENTATIONS.get(pre);
+                rotateLeft();
             } else {
-                if (orientation.equals("N")) {
-                    this.y += 1;
-                } else if (orientation.equals("W")) {
-                    this.x -= 1;
-                } else if (orientation.equals("E")) {
-                    this.x += 1;
-                }
+                moveForward();
             }
         }
+    }
+
+    private void moveForward() {
+        if (orientation.equals("N")) {
+            this.y += 1;
+        } else if (orientation.equals("W")) {
+            this.x -= 1;
+        } else if (orientation.equals("E")) {
+            this.x += 1;
+        }
+    }
+
+    private void rotateLeft() {
+        int index = ORIENTATIONS.indexOf(orientation);
+        int pre = index - 1;
+        pre = pre < 0 ? ORIENTATIONS.size() + pre : pre;
+        orientation = ORIENTATIONS.get(pre);
     }
 
     public String getPositionAndOrientation() {
