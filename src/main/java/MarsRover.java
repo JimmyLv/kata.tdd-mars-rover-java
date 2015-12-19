@@ -1,5 +1,13 @@
+import java.util.ArrayList;
+
 public class MarsRover {
 
+    private static final ArrayList<String> ORIENTATIONS = new ArrayList<String>() {{
+        add("N");
+        add("E");
+        add("S");
+        add("W");
+    }};
     private int y;
     private int x;
     private String orientation;
@@ -11,21 +19,30 @@ public class MarsRover {
         this.orientation = initialOrientation;
     }
 
-    public void execute(String command) {
-        if (command.equals("R")) {
-            orientation = "E";
-        } else if (command.equals("L")) {
-            orientation = "W";
-        } else {
-            if (orientation.equals("N")) {
-                this.y += 1;
-            } else if (orientation.equals("W")) {
-                this.x -= 1;
+    public void execute(String commands) {
+        char[] chars = commands.toCharArray();
+
+        for (char command : chars) {
+            if (command == 'R') {
+                orientation = "E";
+            } else if (command == 'L') {
+                int index = ORIENTATIONS.indexOf(orientation);
+                int pre = index - 1;
+                pre = pre < 0 ? ORIENTATIONS.size() + pre : pre;
+                orientation = ORIENTATIONS.get(pre);
+            } else {
+                if (orientation.equals("N")) {
+                    this.y += 1;
+                } else if (orientation.equals("W")) {
+                    this.x -= 1;
+                } else if (orientation.equals("E")) {
+                    this.x += 1;
+                }
             }
         }
     }
 
     public String getPositionAndOrientation() {
-        return "0 " + this.y + " " + orientation;
+        return this.x + " " + this.y + " " + orientation;
     }
 }
