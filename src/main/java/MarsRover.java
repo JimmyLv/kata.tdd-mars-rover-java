@@ -24,7 +24,10 @@ public class MarsRover {
 
         for (char command : chars) {
             if (command == 'R') {
-                orientation = "E";
+                int index = ORIENTATIONS.indexOf(orientation);
+                int next = index + 1;
+                next = next >= ORIENTATIONS.size() ? ORIENTATIONS.size() - next : next;
+                orientation = ORIENTATIONS.get(next);
             } else if (command == 'L') {
                 rotateLeft();
             } else {

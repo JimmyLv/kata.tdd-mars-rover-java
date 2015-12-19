@@ -52,4 +52,11 @@ public class MarsRoverTest {
 
         assertThat(marsRover.getPositionAndOrientation(), is("1 0 N"));
     }
+
+    @Test
+    public void should_return_10S_when_received_another_multiple_commands() throws Exception {
+        marsRover.execute("RMLRR");
+
+        assertThat(marsRover.getPositionAndOrientation(), is("1 0 S"));
+    }
 }
