@@ -2,9 +2,11 @@ public class MarsRover {
 
     private String orientation;
     private int y;
+    private int x;
 
     public MarsRover(String initialPositionAndOrientation, String orientation) {
         String[] strings = initialPositionAndOrientation.split(" ");
+        this.x = Integer.parseInt(strings[0]);
         this.y = Integer.parseInt(strings[1]);
         this.orientation = orientation;
     }
@@ -15,7 +17,11 @@ public class MarsRover {
         } else if (command.equals("L")) {
             orientation = "W";
         } else {
-            this.y += 1;
+            if (orientation.equals("N")) {
+                this.y += 1;
+            } else if (orientation.equals("W")) {
+                this.x -= 1;
+            }
         }
     }
 
