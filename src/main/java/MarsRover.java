@@ -3,7 +3,8 @@ public class MarsRover {
     private String orientation;
 
     public MarsRover(String initialPositionAndOrientation) {
-
+        String[] strings = initialPositionAndOrientation.split(" ");
+        this.orientation = strings[2];
     }
 
     public void execute(String command) {
