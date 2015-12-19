@@ -20,20 +20,30 @@ public class MarsRover {
     }
 
     public void execute(String commands) {
-        char[] chars = commands.toCharArray();
-
-        for (char command : chars) {
-            if (command == 'R') {
-                int index = ORIENTATIONS.indexOf(orientation);
-                int next = index + 1;
-                next = next >= ORIENTATIONS.size() ? ORIENTATIONS.size() - next : next;
-                orientation = ORIENTATIONS.get(next);
-            } else if (command == 'L') {
+        for (char command : commands.toCharArray()) {
+            if (isRightTurnCommand(command)) {
+                rotateRight();
+            } else if (isLeftTurnCommand(command)) {
                 rotateLeft();
             } else {
                 moveForward();
             }
         }
+    }
+
+    private boolean isLeftTurnCommand(char command) {
+        return command == 'L';
+    }
+
+    private boolean isRightTurnCommand(char command) {
+        return command == 'R';
+    }
+
+    private void rotateRight() {
+        int index = ORIENTATIONS.indexOf(orientation);
+        int next = index + 1;
+        next = next >= ORIENTATIONS.size() ? ORIENTATIONS.size() - next : next;
+        orientation = ORIENTATIONS.get(next);
     }
 
     private void moveForward() {
