@@ -10,7 +10,7 @@ public class MarsRoverTest {
 
     @Before
     public void setUp() throws Exception {
-        marsRover = new MarsRover("0 0", "N");
+        marsRover = new MarsRover(0, 0, "N");
     }
 
     @Test
@@ -39,7 +39,7 @@ public class MarsRoverTest {
 
     @Test
     public void should_return_01W_when_received_a_move_command_given_another_initial_position_and_orientation() throws Exception {
-        MarsRover marsRover = new MarsRover("1 1", "W");
+        MarsRover marsRover = new MarsRover(1, 1, "W");
 
         marsRover.execute("M");
 
