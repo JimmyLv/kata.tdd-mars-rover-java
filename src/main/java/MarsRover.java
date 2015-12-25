@@ -8,15 +8,13 @@ public class MarsRover {
         add("S");
         add("W");
     }};
-    private int y;
-    private int x;
     private String orientation;
+    private Position position;
 
     public MarsRover(String initialPosition, String initialOrientation) {
         String[] strings = initialPosition.split(" ");
-        this.x = Integer.parseInt(strings[0]);
-        this.y = Integer.parseInt(strings[1]);
-        this.orientation = initialOrientation;
+        orientation = initialOrientation;
+        position = new Position(Integer.parseInt(strings[0]), Integer.parseInt(strings[1]));
     }
 
     public void execute(String commands) {
@@ -47,12 +45,19 @@ public class MarsRover {
     }
 
     private void moveForward() {
-        if (orientation.equals("N")) {
-            this.y += 1;
-        } else if (orientation.equals("W")) {
-            this.x -= 1;
-        } else if (orientation.equals("E")) {
-            this.x += 1;
+        switch (orientation) {
+            case "N":
+                position.shift(0, 1);
+                break;
+            case "W":
+                position.shift(-1, 0);
+                break;
+            case "E":
+                position.shift(1, 0);
+                break;
+            case "S":
+                position.shift(0, -1);
+                break;
         }
     }
 
@@ -64,6 +69,6 @@ public class MarsRover {
     }
 
     public String getPositionAndOrientation() {
-        return this.x + " " + this.y + " " + orientation;
+        return position + " " + orientation;
     }
 }
