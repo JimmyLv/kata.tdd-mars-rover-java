@@ -46,16 +46,16 @@ public class MarsRover {
     private void moveForward() {
         switch (orientation) {
             case "N":
-                position.shift(0, 1);
+                position.shift(new Vector(0, 1));
                 break;
             case "W":
-                position.shift(-1, 0);
+                position.shift(new Vector(-1, 0));
                 break;
             case "E":
-                position.shift(1, 0);
+                position.shift(new Vector(1, 0));
                 break;
             case "S":
-                position.shift(0, -1);
+                position.shift(new Vector(0, -1));
                 break;
         }
     }

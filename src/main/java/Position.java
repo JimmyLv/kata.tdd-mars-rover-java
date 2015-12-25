@@ -7,13 +7,13 @@ public class Position {
         this.y = y;
     }
 
-    public void shift(int offsetX, int offsetY) {
-        this.x += offsetX;
-        this.y += offsetY;
-    }
-
     @Override
     public String toString() {
         return String.format("%d %d", x, y);
+    }
+
+    public void shift(Vector vector) {
+        x += vector.getX();
+        y += vector.getY();
     }
 }
