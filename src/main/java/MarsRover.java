@@ -7,7 +7,7 @@ public class MarsRover {
         put(Orientation.E, new Vector(1, 0));
         put(Orientation.S, new Vector(0, -1));
     }};
-    public static final HashMap<Character, Action> ACTIONS = new HashMap<Character, Action>() {{
+    public static final HashMap<Character, Commander> COMMANDS = new HashMap<Character, Commander>() {{
         put('R', marsRover -> marsRover.orientation = marsRover.orientation.right());
         put('L', marsRover -> marsRover.orientation = marsRover.orientation.left());
         put('M', marsRover -> marsRover.position.shift(DIRECTIONS.get(marsRover.orientation)));
@@ -27,7 +27,7 @@ public class MarsRover {
     }
 
     private void execute(char command) {
-        ACTIONS.get(command).act(this);
+        COMMANDS.get(command).act(this);
     }
 
     public String getPositionAndOrientation() {
