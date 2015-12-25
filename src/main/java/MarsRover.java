@@ -11,10 +11,9 @@ public class MarsRover {
     private String orientation;
     private Position position;
 
-    public MarsRover(String initialPosition, String initialOrientation) {
-        String[] strings = initialPosition.split(" ");
-        orientation = initialOrientation;
-        position = new Position(Integer.parseInt(strings[0]), Integer.parseInt(strings[1]));
+    public MarsRover(Position position, String initialOrientation) {
+        this.orientation = initialOrientation;
+        this.position = position;
     }
 
     public void execute(String commands) {
