@@ -12,4 +12,9 @@ public class Position {
         x += offsetX;
         y += offsetY;
     }
+
+    @Override
+    public String toString() {
+        return String.format("%d %d", x, y);
+    }
 }
