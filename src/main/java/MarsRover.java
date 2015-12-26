@@ -18,16 +18,14 @@ public class MarsRover {
     public static final HashMap<Character, Action> COMMANDS = new HashMap<Character, Action>() {{
         put('R', (marsRover -> marsRover.rotateRight()));
         put('L', (marsRover -> marsRover.rotateLeft()));
-        put('M', (marsRover -> marsRover.position.shift(DIRECTIONS.get(marsRover.orientation))));
+        put('M', (marsRover -> marsRover.position.shift(DIRECTIONS.get(marsRover.orientation.toString()))));
     }};
-    private Orientation orientation1;
-    private String orientation;
+    private Orientation orientation;
     private Position position;
 
     public MarsRover(int x, int y, String initialOrientation) {
         this.position = new Position(x, y);
-        this.orientation = initialOrientation;
-        orientation1 = Orientation.valueOf(initialOrientation);
+        orientation = Orientation.valueOf(initialOrientation);
     }
 
     public void execute(String commands) {
@@ -41,20 +39,12 @@ public class MarsRover {
     }
 
     private void rotateLeft() {
-        int index = ORIENTATIONS.indexOf(orientation);
-        int pre = index - 1;
-        pre = pre < 0 ? ORIENTATIONS.size() + pre : pre;
-        orientation = ORIENTATIONS.get(pre);
-        orientation1 = orientation1.left();
+        orientation = orientation.left();
 
     }
 
     private void rotateRight() {
-        int index = ORIENTATIONS.indexOf(orientation);
-        int next = index + 1;
-        next = next >= ORIENTATIONS.size() ? ORIENTATIONS.size() - next : next;
-        orientation = ORIENTATIONS.get(next);
-        orientation1 = orientation1.right();
+        orientation = orientation.right();
     }
 
     public String getPositionAndOrientation() {
