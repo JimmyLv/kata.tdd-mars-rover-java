@@ -15,6 +15,11 @@ public class MarsRover {
         put("S", new Vector(0, -1));
         put("W", new Vector(-1, 0));
     }};
+    public static final HashMap<Character, Action> COMMANDS = new HashMap<Character, Action>() {{
+        put('R', (marsRover -> marsRover.rotateRight()));
+        put('L', (marsRover -> marsRover.rotateLeft()));
+        put('M', (marsRover -> marsRover.moveForward()));
+    }};
     private String orientation;
     private Position position;
 
@@ -25,22 +30,12 @@ public class MarsRover {
 
     public void execute(String commands) {
         for (char command : commands.toCharArray()) {
-            if (isRightTurnCommand(command)) {
-                rotateRight();
-            } else if (isLeftTurnCommand(command)) {
-                rotateLeft();
-            } else {
-                moveForward();
-            }
+            execute(command);
         }
     }
 
-    private boolean isLeftTurnCommand(char command) {
-        return command == 'L';
-    }
-
-    private boolean isRightTurnCommand(char command) {
-        return command == 'R';
+    private void execute(char command) {
+        COMMANDS.get(command).act(this);
     }
 
     private void moveForward() {
