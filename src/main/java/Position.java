@@ -10,6 +10,9 @@ public class Position {
 
     public void shift(Vector vector) {
         x += vector.getX();
+        if (x < 0) {
+            x = 0;
+        }
         y += vector.getY();
     }
 
