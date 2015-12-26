@@ -3,23 +3,21 @@ public class Position {
     private int y;
 
     public Position(int x, int y) {
-
         this.x = x;
         this.y = y;
     }
 
-    public void shift(Vector vector) {
-        x += vector.getX();
-        if (x < 0) {
-            x = 0;
+    public Position shift(Vector vector) {
+        return new Position(preventBorder(x + vector.getX()), preventBorder(y + vector.getY()));
+    }
+
+    private int preventBorder(int value) {
+        if (value < 0) {
+            value = 0;
+        } else if (value > 5) {
+            value = 5;
         }
-        if (x > 5){
-            x = 5;
-        }
-        y += vector.getY();
-        if (y > 5){
-            y = 5;
-        }
+        return value;
     }
 
     @Override
