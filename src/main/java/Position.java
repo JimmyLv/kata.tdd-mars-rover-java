@@ -17,4 +17,9 @@ public class Position {
     public String toString() {
         return String.format("%d %d", x, y);
     }
+
+    public void shift(Vector vector) {
+        x += vector.getX();
+        y += vector.getY();
+    }
 }
