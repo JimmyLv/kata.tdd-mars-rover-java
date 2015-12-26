@@ -61,22 +61,22 @@ public class MarsRoverTest {
     }
 
     @Test
-    public void should_return_OOW_when_received_M_command() throws Exception {
-        MarsRover marsRover = new MarsRover(0, 0, "W");
-
-        marsRover.execute("M");
-
-        assertThat(marsRover.getPositionAndOrientation(), is("0 0 W"));
-
-    }
-
-    @Test
     public void should_return_OOW_when_received_B_command() throws Exception {
         MarsRover marsRover = new MarsRover(1, 0, "E");
 
         marsRover.execute("B");
 
         assertThat(marsRover.getPositionAndOrientation(), is("0 0 E"));
+
+    }
+
+    @Test
+    public void should_return_OOS_when_received_M_command_given_marsRover_with_border_position() throws Exception {
+        MarsRover marsRover = new MarsRover(0, 0, "N");
+
+        marsRover.execute("LMLM");
+
+        assertThat(marsRover.getPositionAndOrientation(), is("0 0 S"));
 
     }
 
