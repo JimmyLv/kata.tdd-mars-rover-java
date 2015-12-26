@@ -11,6 +11,7 @@ public class MarsRover {
         put('R', () -> orientation = orientation.right());
         put('L', () -> orientation = orientation.left());
         put('M', () -> position = position.shift(DIRECTIONS.get(orientation)));
+        put('B', () -> position = position.shift(DIRECTIONS.get(orientation.right().right())));
     }};
     private Orientation orientation;
     private Position position;
