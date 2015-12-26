@@ -39,13 +39,6 @@ public class MarsRover {
         return command == 'R';
     }
 
-    private void rotateRight() {
-        int index = ORIENTATIONS.indexOf(orientation);
-        int next = index + 1;
-        next = next >= ORIENTATIONS.size() ? ORIENTATIONS.size() - next : next;
-        orientation = ORIENTATIONS.get(next);
-    }
-
     private void moveForward() {
         if (orientation.equals("N")) {
             this.y += 1;
@@ -61,6 +54,13 @@ public class MarsRover {
         int pre = index - 1;
         pre = pre < 0 ? ORIENTATIONS.size() + pre : pre;
         orientation = ORIENTATIONS.get(pre);
+    }
+
+    private void rotateRight() {
+        int index = ORIENTATIONS.indexOf(orientation);
+        int next = index + 1;
+        next = next >= ORIENTATIONS.size() ? ORIENTATIONS.size() - next : next;
+        orientation = ORIENTATIONS.get(next);
     }
 
     public String getPositionAndOrientation() {
