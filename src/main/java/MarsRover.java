@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class MarsRover {
 
@@ -7,6 +8,12 @@ public class MarsRover {
         add("E");
         add("S");
         add("W");
+    }};
+    public static final HashMap<String, Vector> DIRECTIONS = new HashMap<String, Vector>() {{
+        put("N", new Vector(0, 1));
+        put("E", new Vector(1, 0));
+        put("S", new Vector(0, -1));
+        put("W", new Vector(-1, 0));
     }};
     private String orientation;
     private Position position;
@@ -37,21 +44,7 @@ public class MarsRover {
     }
 
     private void moveForward() {
-        if (orientation.equals("N")) {
-            position.shift(new Vector(0, 1));
-
-        } else if (orientation.equals("W")) {
-            position.shift(new Vector(-1, 0));
-
-        } else if (orientation.equals("E")) {
-
-            position.shift(new Vector(1, 0));
-
-        } else if (orientation.equals("S")) {
-
-            position.shift(new Vector(0, -1));
-
-        }
+        position.shift(DIRECTIONS.get(orientation));
     }
 
     private void rotateLeft() {
