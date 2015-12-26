@@ -13,7 +13,13 @@ public class Position {
         if (x < 0) {
             x = 0;
         }
+        if (x > 5){
+            x = 5;
+        }
         y += vector.getY();
+        if (y > 5){
+            y = 5;
+        }
     }
 
     @Override

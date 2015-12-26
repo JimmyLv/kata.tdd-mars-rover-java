@@ -70,6 +70,13 @@ public class MarsRoverTest {
 
     }
 
+    @Test
+    public void should_return_55S_when_received_MRMR_given_another_initial_position_and_orientation() {
+        MarsRover marsRover = new MarsRover(5, 5, "N");
 
+        marsRover.execute("MRMR");
+
+        assertThat(marsRover.getPositionAndOrientation(), is("5 5 S"));
+    }
 }
 

@@ -17,7 +17,7 @@ public class MarsRover {
 
     public MarsRover(int x, int y, String initialOrientation) {
         this.position = new Position(x, y);
-        orientation = Orientation.valueOf(initialOrientation);
+        this.orientation = Orientation.valueOf(initialOrientation);
     }
 
     public void execute(String commands) {
