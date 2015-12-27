@@ -1,92 +1,47 @@
-import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import org.junit.runners.Parameterized.Parameters;
+
+import java.util.Arrays;
+import java.util.Collection;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
+@RunWith(Parameterized.class)
 public class MarsRoverTest {
-
     private MarsRover marsRover;
+    private String commands;
+    private String expectedStatus;
 
-    @Before
-    public void setUp() throws Exception {
-        marsRover = new MarsRover(0, 0, "N");
+    public MarsRoverTest(MarsRover marsRover, String commands, String expectedStatus) {
+        this.marsRover = marsRover;
+        this.commands = commands;
+        this.expectedStatus = expectedStatus;
+    }
+
+    @Parameters(name = "{index}: expect ({2}) when {0} received ({1}) commands")
+    public static Collection<Object[]> data() {
+        return Arrays.asList(new Object[][]{
+                {new MarsRover(0, 0, "N"), "L", "0 0 W"},
+                {new MarsRover(0, 0, "N"), "R", "0 0 E"},
+                {new MarsRover(0, 0, "N"), "M", "0 1 N"},
+                {new MarsRover(1, 1, "W"), "M", "0 1 W"},
+                {new MarsRover(0, 1, "N"), "B", "0 0 N"},
+                {new MarsRover(0, 0, "N"), "RML", "1 0 N"},
+                {new MarsRover(0, 0, "N"), "RMLRR", "1 0 S"},
+                {new MarsRover(0, 0, "N"), "LMLM", "0 0 S"},
+                {new MarsRover(5, 5, "N"), "MRMR", "5 5 S"}
+        });
     }
 
     @Test
-    public void should_return_00W_when_received_a_left_turn_command() throws Exception {
-        MarsRover marsRover = this.marsRover;
+    public void should_return_status_when_marsRover_received_commands() throws Exception {
 
-        marsRover.execute("L");
+        marsRover.execute(commands);
 
-        assertThat(marsRover.status(), is("0 0 W"));
-    }
-
-    @Test
-    public void should_return_00E_when_received_a_right_turn_command() throws Exception {
-
-        marsRover.execute("R");
-
-        assertThat(marsRover.status(), is("0 0 E"));
-    }
-
-    @Test
-    public void should_return_01N_when_received_a_move_command() throws Exception {
-        marsRover.execute("M");
-
-        assertThat(marsRover.status(), is("0 1 N"));
-    }
-
-    @Test
-    public void should_return_01W_when_received_a_move_command_given_another_initial_position_and_orientation() throws Exception {
-        MarsRover marsRover = new MarsRover(1, 1, "W");
-
-        marsRover.execute("M");
-
-        assertThat(marsRover.status(), is("0 1 W"));
-    }
-
-    @Test
-    public void should_return_10N_when_received_multiple_commands() throws Exception {
-        marsRover.execute("RML");
-
-        assertThat(marsRover.status(), is("1 0 N"));
-    }
-
-    @Test
-    public void should_return_10S_when_received_another_multiple_commands() throws Exception {
-        marsRover.execute("RMLRR");
-
-        assertThat(marsRover.status(), is("1 0 S"));
-    }
-
-    @Test
-    public void should_return_OOW_when_received_B_command() throws Exception {
-        MarsRover marsRover = new MarsRover(1, 0, "E");
-
-        marsRover.execute("B");
-
-        assertThat(marsRover.status(), is("0 0 E"));
-
-    }
-
-    @Test
-    public void should_return_OOS_when_received_M_command_given_marsRover_with_border_position() throws Exception {
-        MarsRover marsRover = new MarsRover(0, 0, "N");
-
-        marsRover.execute("LMLM");
-
-        assertThat(marsRover.status(), is("0 0 S"));
-
-    }
-
-    @Test
-    public void should_return_55S_when_received_MRMR_given_another_initial_position_and_orientation() {
-        MarsRover marsRover = new MarsRover(5, 5, "N");
-
-        marsRover.execute("MRMR");
-
-        assertThat(marsRover.status(), is("5 5 S"));
+        assertThat(marsRover.status(), is(expectedStatus));
     }
 }
 

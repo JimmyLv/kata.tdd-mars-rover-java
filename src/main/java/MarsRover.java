@@ -29,4 +29,9 @@ public class MarsRover {
     public String status() {
         return position + " " + orientation;
     }
+
+    @Override
+    public String toString() {
+        return String.format("MarsRover(%s %s)", position, orientation);
+    }
 }
