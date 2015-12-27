@@ -19,7 +19,7 @@ public class MarsRoverTest {
 
         marsRover.execute("L");
 
-        assertThat(marsRover.getPositionAndOrientation(), is("0 0 W"));
+        assertThat(marsRover.status(), is("0 0 W"));
     }
 
     @Test
@@ -27,14 +27,14 @@ public class MarsRoverTest {
 
         marsRover.execute("R");
 
-        assertThat(marsRover.getPositionAndOrientation(), is("0 0 E"));
+        assertThat(marsRover.status(), is("0 0 E"));
     }
 
     @Test
     public void should_return_01N_when_received_a_move_command() throws Exception {
         marsRover.execute("M");
 
-        assertThat(marsRover.getPositionAndOrientation(), is("0 1 N"));
+        assertThat(marsRover.status(), is("0 1 N"));
     }
 
     @Test
@@ -43,21 +43,21 @@ public class MarsRoverTest {
 
         marsRover.execute("M");
 
-        assertThat(marsRover.getPositionAndOrientation(), is("0 1 W"));
+        assertThat(marsRover.status(), is("0 1 W"));
     }
 
     @Test
     public void should_return_10N_when_received_multiple_commands() throws Exception {
         marsRover.execute("RML");
 
-        assertThat(marsRover.getPositionAndOrientation(), is("1 0 N"));
+        assertThat(marsRover.status(), is("1 0 N"));
     }
 
     @Test
     public void should_return_10S_when_received_another_multiple_commands() throws Exception {
         marsRover.execute("RMLRR");
 
-        assertThat(marsRover.getPositionAndOrientation(), is("1 0 S"));
+        assertThat(marsRover.status(), is("1 0 S"));
     }
 
     @Test
@@ -66,7 +66,7 @@ public class MarsRoverTest {
 
         marsRover.execute("B");
 
-        assertThat(marsRover.getPositionAndOrientation(), is("0 0 E"));
+        assertThat(marsRover.status(), is("0 0 E"));
 
     }
 
@@ -76,7 +76,7 @@ public class MarsRoverTest {
 
         marsRover.execute("LMLM");
 
-        assertThat(marsRover.getPositionAndOrientation(), is("0 0 S"));
+        assertThat(marsRover.status(), is("0 0 S"));
 
     }
 
@@ -86,7 +86,7 @@ public class MarsRoverTest {
 
         marsRover.execute("MRMR");
 
-        assertThat(marsRover.getPositionAndOrientation(), is("5 5 S"));
+        assertThat(marsRover.status(), is("5 5 S"));
     }
 }
 
