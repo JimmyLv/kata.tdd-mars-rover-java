@@ -22,11 +22,8 @@ public class Position {
     }
 
     private int preventBorder(int value) {
-        if (value < 0) {
-            value = 0;
-        } else if (value > 5) {
-            value = 5;
-        }
+        if (value < 0) return 0;
+        if (value > 5) return 5;
         return value;
     }
 
