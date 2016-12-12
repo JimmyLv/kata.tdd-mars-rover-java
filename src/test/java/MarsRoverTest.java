@@ -21,7 +21,7 @@ public class MarsRoverTest {
         this.expectedStatus = expectedStatus;
     }
 
-    @Parameters(name = "{index}: expect ({2}) when {0} received ({1}) commands")
+    @Parameters(name = "{index}: should return status ({2}) when {0} received ({1}) commands")
     public static Collection<Object[]> data() {
         return Arrays.asList(new Object[][]{
                 {new MarsRover(0, 0, "N"), "L", "0 0 W"},
