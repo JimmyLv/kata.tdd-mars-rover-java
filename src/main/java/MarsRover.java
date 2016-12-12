@@ -12,9 +12,9 @@ public class MarsRover {
     private Orientation orientation;
     private Position position;
 
-    public MarsRover(int x, int y, String initialOrientation) {
+    public MarsRover(int x, int y, String orientation) {
         this.position = new Position(x, y);
-        this.orientation = Orientation.valueOf(initialOrientation);
+        this.orientation = Orientation.valueOf(orientation);
     }
 
     public void execute(String commands) {
