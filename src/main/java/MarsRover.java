@@ -2,7 +2,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 public class MarsRover {
-    private final HashMap<String, Action> COMMANDS = new HashMap<String, Action>() {{
+    private final HashMap<String, Runnable> COMMANDS = new HashMap<String, Runnable>() {{
         put("R", () -> orientation = orientation.right());
         put("L", () -> orientation = orientation.left());
         put("M", () -> position = position.shift(orientation));
@@ -19,7 +19,7 @@ public class MarsRover {
 
     public void execute(String commands) {
         Arrays.stream(commands.split(""))
-                .forEach(command -> COMMANDS.get(command).act());
+                .forEach(command -> COMMANDS.get(command).run());
     }
 
     public String status() {
