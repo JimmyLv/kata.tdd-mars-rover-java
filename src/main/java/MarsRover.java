@@ -1,33 +1,32 @@
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.function.Function;
 
 public class MarsRover {
-    private final HashMap<String, Runnable> COMMANDS = new HashMap<String, Runnable>() {{
-        put("R", () -> orientation = orientation.right());
-        put("L", () -> orientation = orientation.left());
-        put("M", () -> position = position.shift(orientation));
-        put("B", () -> position = position.shift(orientation.right().right()));
+    private final HashMap<String, Function<Status, Status>> COMMANDS = new HashMap<String, Function<Status, Status>>() {{
+        put("R", (status) -> new Status(status.getPosition(), status.getOrientation().right()));
+        put("L", (status) -> new Status(status.getPosition(), status.getOrientation().left()));
+        put("M", (status) -> new Status(status.getPosition().shift(status.getOrientation()), status.getOrientation()));
+        put("B", (status) -> new Status(status.getPosition().shift(status.getOrientation().right().right()), status.getOrientation()));
     }};
 
-    private Orientation orientation;
-    private Position position;
+    private Status status;
 
     public MarsRover(int x, int y, String orientation) {
-        this.position = new Position(x, y);
-        this.orientation = Orientation.valueOf(orientation);
+        this.status = new Status(new Position(x, y), Orientation.valueOf(orientation));
     }
 
     public void execute(String commands) {
         Arrays.stream(commands.split(""))
-                .forEach(command -> COMMANDS.get(command).run());
+                .forEach(command -> this.status = COMMANDS.get(command).apply(this.status));
     }
 
-    public String status() {
-        return position + " " + orientation;
+    public Status status() {
+        return this.status;
     }
 
     @Override
     public String toString() {
-        return String.format("MarsRover(%s %s)", position, orientation);
+        return String.format("MarsRover(%s %s)", this.status.getPosition(), this.status.getOrientation());
     }
 }

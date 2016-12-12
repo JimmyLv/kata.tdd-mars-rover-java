@@ -41,7 +41,7 @@ public class MarsRoverTest {
 
         marsRover.execute(commands);
 
-        assertThat(marsRover.status(), is(expectedStatus));
+        assertThat(marsRover.status().toString(), is(expectedStatus));
     }
 }
 
